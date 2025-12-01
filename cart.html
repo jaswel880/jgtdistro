@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JGT </title>
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section id="header">
+            <a href="#"><img src="img/JGT (1).png" class="logo" alt=""></a>
+
+            <div>
+                <ul id="navbar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a class="active" href="cart.html"><i class="fas fa-cart-shopping"></i></a></li>
+                <li id="profile-container">
+                    <a href="login.html" id="login-link">Login</a>
+                </li>
+                <a href="#" id="close"><i class="fas fa-times"></i></a>
+                </ul>
+            </div>
+        </section>
+
+        <section id="page-header" class="about-header">
+            <h2>#Pembayaran</h2>
+            <p>Silahkan Membayar Jika Ingin!</p>
+        </section>
+
+        <section id="cart" class="section-p1">
+            <div class="cart-table-wrapper">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Hapus</td>
+                        <td>Image</td>
+                        <td>Produk</td>
+                        <td>Warna</td>
+                        <td>Ukuran</td>
+                        <td>Harga</td>
+                        <td>Jumlah</td>
+                        <td>Subtotal</td>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                </tbody>
+            </table>
+            </div>
+
+            <!-- Mobile card layout -->
+            <div class="cart-items-mobile" id="cart-items-mobile">
+                <!-- Cart items will be populated here by JavaScript -->
+            </div>
+        </section>
+
+            <section id="cart-add" class="section-p1">
+
+                <div id="cart-add-left" class="cart-add-left">
+                    <div id="subtotal">
+                        <h3>Ringkasan Pembelian</h3>
+                        <table>
+                            <tr>
+                                <td>Subtotal Produk</td>
+                                <td id="cart-total">Rp.3.878.550</td>
+                            </tr>
+                            <tr>
+                                <td>Biaya Pengiriman</td>
+                                <td id="shipping-cost">Rp.0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Total Pembayaran</strong></td>
+                                <td><strong id="grand-total">Rp.3.878.550</strong></td>
+                            </tr>
+                        </table>
+
+                        <!-- Payment Method Selection -->
+                        <div id="payment-method" class="payment-box">
+                            <h3>Pilih Metode Pembayaran</h3>
+                            <div class="payment-options">
+                                <label class="label-inline">
+                                    <input type="radio" name="payment-method" value="cash" checked>
+                                    <span>💵 Tunai (Bayar saat barang sampai)</span>
+                                </label>
+                                <label class="label-inline">
+                                    <input type="radio" name="payment-method" value="digital">
+                                    <span>📱 Dompet Digital</span>
+                                </label>
+                                <div id="digital-wallet-options" class="digital-wallet-options">
+                                    <select id="digital-wallet-select" class="select-full">
+                                        <option value="">Pilih Dompet Digital</option>
+                                        <option value="gopay">GoPay</option>
+                                        <option value="ovo">OVO</option>
+                                        <option value="dana">DANA</option>
+                                        <option value="shopeepay">ShopeePay</option>
+                                    </select>
+                                </div>
+                                <label class="label-inline">
+                                    <input type="radio" name="payment-method" value="bank">
+                                    <span>🏦 Transfer Bank BNI</span>
+                                </label>
+                            </div>
+                            <div id="bank-details" class="bank-details">
+                                <h4>Detail Rekening Bank BNI</h4>
+                                <label for="user-bank-account" class="form-label">Nomor Rekening Anda:</label>
+                                <input type="text" id="user-bank-account" placeholder="Masukkan nomor rekening BNI Anda" class="input-full" maxlength="20">
+                                <p class="small-muted">
+                                    <strong>Rekening Penerima:</strong> 1867****** (BNI)<br>
+                                    <strong>Nama Penerima:</strong> Jaswel Picanussa
+                                </p>
+                                <small class="muted">Pastikan nomor rekening BNI Anda benar. Transfer akan diarahkan ke aplikasi Wondr by BNI.</small>
+                            </div>
+                            <div id="digital-wallet-info" class="digital-wallet-info">
+                                <h4>📱 Dompet Digital</h4>
+                                <p>Anda akan diarahkan ke aplikasi dompet digital pilihan untuk menyelesaikan pembayaran.</p>
+                            </div>
+                        </div>
+
+                        <!-- Shipping Address Form -->
+                        <div id="shipping-address" class="shipping-box">
+                            <h3>Alamat Pengiriman</h3>
+                            <div class="grid-2col">
+                                <div>
+                                    <label for="full-name" class="form-label">Nama Lengkap:</label>
+                                    <input type="text" id="full-name" placeholder="Masukkan nama lengkap" class="input-full" required>
+                                </div>
+                                <div>
+                                    <label for="phone" class="form-label">Nomor HP:</label>
+                                    <input type="tel" id="phone" placeholder="081234567890" class="input-full" required>
+                                </div>
+                            </div>
+                            <div class="mb-10">
+                                <label for="address" class="form-label">Alamat Lengkap:</label>
+                                <textarea id="address" placeholder="Jl. Contoh No. 123, Kelurahan, Kecamatan" rows="3" class="input-full" required></textarea>
+                            </div>
+                        <div class="grid-3col">
+                            <div>
+                                <label for="rt" class="form-label">RT:</label>
+                                <input type="text" id="rt" placeholder="001" class="input-full" required>
+                            </div>
+                            <div>
+                                <label for="rw" class="form-label">RW:</label>
+                                <input type="text" id="rw" placeholder="002" class="input-full" required>
+                            </div>
+                            <div>
+                                <label for="postal-code" class="form-label">Kode Pos:</label>
+                                <input type="text" id="postal-code" placeholder="97234" class="input-full" required>
+                            </div>
+                        </div>
+
+                        <div id="checkout-button-container" class="checkout-button-container">
+                            <button class="normal checkout-btn" id="checkout-btn" type="button">
+                                <span id="checkout-text">Lanjut ke Pembayaran</span>
+                                <span id="loading-spinner" style="display:none; margin-left:8px;">
+                                    <i class="fas fa-spinner fa-spin" aria-hidden="true"></i>
+                                    <span class="sr-only">Memproses...</span>
+                                </span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div id="cart-add-right" class="cart-add-right">
+                </div>
+            </section>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            handleLoginLogout();
+        });
+
+        // Payment functionality
+        document.addEventListener('DOMContentLoaded', function() {
+                // Payment method selection logic
+                const paymentRadios = document.querySelectorAll('input[name="payment-method"]');
+                const bankDetails = document.getElementById('bank-details');
+                const digitalWalletInfo = document.getElementById('digital-wallet-info');
+                const digitalWalletOptions = document.getElementById('digital-wallet-options');
+
+                // Check for payment success redirect
+                const urlParams = new URLSearchParams(window.location.search);
+                if (urlParams.get('payment') === 'success') {
+                    const wallet = urlParams.get('wallet');
+                    const amount = urlParams.get('amount');
+                    const walletNames = {
+                        'gopay': 'GoPay',
+                        'ovo': 'OVO',
+                        'dana': 'DANA',
+                        'shopeepay': 'ShopeePay'
+                    };
+
+                        toast.show(`Pembayaran ${walletNames[wallet]} berhasil! Pesanan Anda akan diproses dan dikirim dalam 1-5 hari.`, 'success');
+                    // Clear cart and redirect to home
+                    localStorage.removeItem('cart');
+                    window.location.href = 'index.html';
+                }
+
+                paymentRadios.forEach(radio => {
+                    radio.addEventListener('change', function() {
+                        if (this.value === 'bank') {
+                            bankDetails.style.display = 'block';
+                            digitalWalletInfo.style.display = 'none';
+                            digitalWalletOptions.style.display = 'none';
+                        } else if (this.value === 'digital') {
+                            bankDetails.style.display = 'none';
+                            digitalWalletInfo.style.display = 'block';
+                            digitalWalletOptions.style.display = 'block';
+                        } else {
+                            bankDetails.style.display = 'none';
+                            digitalWalletInfo.style.display = 'none';
+                            digitalWalletOptions.style.display = 'none';
+                        }
+                    });
+                });
+
+                const checkoutBtn = document.getElementById('checkout-btn');
+                const checkoutText = document.getElementById('checkout-text');
+                const loadingSpinner = document.getElementById('loading-spinner');
+
+                if (checkoutBtn) {
+                    checkoutBtn.addEventListener('click', async function() {
+                        // Prepare UI state safely
+                        try {
+                            if (checkoutBtn) checkoutBtn.disabled = true;
+                            if (checkoutText) checkoutText.textContent = 'Memproses...';
+                            if (loadingSpinner) loadingSpinner.style.display = 'inline-block';
+
+                            const token = localStorage.getItem('token');
+                            if (!token) {
+                                    toast.show('Silakan login terlebih dahulu', 'warning');
+                                // restore UI before redirect
+                                if (checkoutBtn) checkoutBtn.disabled = false;
+                                if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                                window.location.href = 'login.html';
+                                return;
+                            }
+
+                            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                            if (cart.length === 0) {
+                                    toast.show('Keranjang kosong', 'warning');
+                                if (checkoutBtn) checkoutBtn.disabled = false;
+                                if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                                return;
+                            }
+
+                            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+                            // Get selected payment method
+                            const selectedPayment = document.querySelector('input[name="payment-method"]:checked').value;
+                            let paymentMethod = selectedPayment;
+                            let bankAccount = '';
+                            let bankName = '';
+
+                            // Validate shipping address
+                            const fullName = document.getElementById('full-name').value.trim();
+                            const phone = document.getElementById('phone').value.trim();
+                            const address = document.getElementById('address').value.trim();
+                            const rt = document.getElementById('rt').value.trim();
+                            const rw = document.getElementById('rw').value.trim();
+                            const postalCode = document.getElementById('postal-code').value.trim();
+
+                            if (!fullName || !phone || !address || !rt || !rw || !postalCode) {
+                                    toast.show('Silakan lengkapi semua data alamat pengiriman terlebih dahulu', 'warning');
+                                if (checkoutBtn) checkoutBtn.disabled = false;
+                                if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                                return;
+                            }
+
+                            if (!/^\d{10,15}$/.test(phone)) {
+                                    toast.show('Nomor HP harus berupa angka 10-15 digit', 'warning');
+                                if (checkoutBtn) checkoutBtn.disabled = false;
+                                if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                                if (loadingSpinner) loadingSpinner.style.display = 'none';
+                                return;
+                            }
+
+                            // Calculate shipping cost based on city (Ambon vs outside) and total price
+                            let shippingDays = 1; // Default for local
+                            let shippingCost = 0; // Default free shipping
+
+                            // Check if address contains "ambon" (case insensitive)
+                            const isAmbon = address.toLowerCase().includes('ambon') ||
+                                           fullName.toLowerCase().includes('ambon') ||
+                                           postalCode.startsWith('97'); // Ambon postal codes typically start with 97
+
+                            if (total > 1000000) {
+                                // High value order
+                                if (isAmbon) {
+                                    shippingDays = 1; // Local delivery
+                                    shippingCost = 50000; // Rp. 50,000 for Ambon
+                                } else {
+                                    shippingDays = 3; // Outside Ambon
+                                    shippingCost = 150000; // Rp. 150,000 for outside Ambon
+                                }
+                            } else {
+                                // Normal order
+                                if (isAmbon) {
+                                    shippingDays = 1; // Local delivery
+                                    shippingCost = 10000; // Rp. 10,000 for Ambon
+                                } else {
+                                    shippingDays = 3; // Outside Ambon
+                                    shippingCost = 30000; // Rp. 30,000 for outside Ambon
+                                }
+                            }
+
+                            // Update shipping cost display
+                            const shippingCostElement = document.getElementById('shipping-cost');
+                            const grandTotalElement = document.getElementById('grand-total');
+                            if (shippingCostElement) {
+                                shippingCostElement.textContent = shippingCost > 0 ? 'Rp.' + shippingCost.toLocaleString('id-ID') : 'Gratis';
+                            }
+                            if (grandTotalElement) {
+                                const newGrandTotal = total + shippingCost;
+                                grandTotalElement.textContent = 'Rp.' + newGrandTotal.toLocaleString('id-ID');
+                            }
+
+                            const shippingAddress = {
+                                fullName,
+                                phone,
+                                address,
+                                rt,
+                                rw,
+                                postalCode,
+                                shippingDays,
+                                shippingCost
+                            };
+
+                            // Build an order object we can save locally and attempt to send to server non-blocking
+                            const order = {
+                                id: Date.now(),
+                                amount: total + shippingCost,
+                                items: cart,
+                                paymentMethod: selectedPayment,
+                                shippingAddress,
+                                status: 'pending',
+                                createdAt: new Date().toISOString()
+                            };
+
+
+
+                            if (selectedPayment === 'bank') {
+                                const userBankAccount = document.getElementById('user-bank-account').value.trim();
+                                if (!userBankAccount) {
+                                        toast.show('Silakan masukkan nomor rekening BNI Anda terlebih dahulu', 'warning');
+                                    if (checkoutBtn) checkoutBtn.disabled = false;
+                                    if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                                    if (loadingSpinner) loadingSpinner.style.display = 'none';
+                                    return;
+                                }
+                                if (!/^\d{10,20}$/.test(userBankAccount)) {
+                                        toast.show('Nomor rekening BNI harus berupa angka 10-20 digit', 'warning');
+                                    if (checkoutBtn) checkoutBtn.disabled = false;
+                                    if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                                    if (loadingSpinner) loadingSpinner.style.display = 'none';
+                                    return;
+                                }
+
+                                bankAccount = '1867208949'; // Rekening penerima tetap
+                                bankName = 'BNI';
+                                const userAccount = userBankAccount; // Rekening pengirim dari user
+                                paymentMethod = `Transfer Bank BNI - Dari ${userAccount} ke ${bankAccount}`;
+
+                                // Save pending order locally and try beacon, then redirect immediately
+                                try {
+                                    const pendingOrders = JSON.parse(localStorage.getItem('pendingOrders') || '[]');
+                                    pendingOrders.push(Object.assign({}, order, { paymentMethod }));
+                                    localStorage.setItem('pendingOrders', JSON.stringify(pendingOrders));
+                                } catch (e) {
+                                    console.error('Gagal menyimpan pending order:', e);
+                                }
+
+                                    toast.show('Mengalihkan ke halaman struk pembayaran Bank BNI...', 'info');
+                                const paymentUrl = `receipt.html?wallet=&amount=${order.amount}&items=${encodeURIComponent(cart.map(item => item.name).join(', '))}&shipping=${encodeURIComponent(JSON.stringify(shippingAddress))}&orderId=${order.id}`;
+                                localStorage.removeItem('cart');
+                                window.location.href = paymentUrl;
+                                return;
+
+                            } else if (selectedPayment === 'digital') {
+                                const selectedWallet = document.getElementById('digital-wallet-select').value;
+                                if (!selectedWallet) {
+                                        toast.show('Silakan pilih dompet digital terlebih dahulu', 'warning');
+                                    if (checkoutBtn) checkoutBtn.disabled = false;
+                                    if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                                    if (loadingSpinner) loadingSpinner.style.display = 'none';
+                                    return;
+                                }
+
+                                const walletNames = {
+                                    'gopay': 'GoPay',
+                                    'ovo': 'OVO',
+                                    'dana': 'DANA',
+                                    'shopeepay': 'ShopeePay'
+                                };
+
+                                paymentMethod = `Dompet Digital - ${walletNames[selectedWallet]}`;
+                                bankAccount = '082197883767'; // Nomor dompet digital penerima
+                                bankName = walletNames[selectedWallet];
+
+                                // Save pending order locally and try beacon, then redirect immediately
+                                try {
+                                    const pendingOrders = JSON.parse(localStorage.getItem('pendingOrders') || '[]');
+                                    pendingOrders.push(Object.assign({}, order, { paymentMethod, provider: selectedWallet }));
+                                    localStorage.setItem('pendingOrders', JSON.stringify(pendingOrders));
+                                } catch (e) {
+                                    console.error('Gagal menyimpan pending order:', e);
+                                }
+
+                                    toast.show(`Mengalihkan ke halaman struk pembayaran ${walletNames[selectedWallet]}...`, 'info');
+                                const paymentUrl = `receipt.html?wallet=${selectedWallet}&amount=${order.amount}&items=${encodeURIComponent(cart.map(item => item.name).join(', '))}&shipping=${encodeURIComponent(JSON.stringify(shippingAddress))}&orderId=${order.id}`;
+                                localStorage.removeItem('cart');
+                                window.location.href = paymentUrl;
+                                return;
+
+                            } else if (selectedPayment === 'cash') {
+                                // Cash payment: save locally and redirect immediately for best UX
+                                    toast.show('Pembayaran tunai dipilih. Silakan dibayar ketika pesanan sudah sampai.', 'info');
+
+                                try {
+                                    const pendingOrders = JSON.parse(localStorage.getItem('pendingOrders') || '[]');
+                                    pendingOrders.push(order);
+                                    localStorage.setItem('pendingOrders', JSON.stringify(pendingOrders));
+                                } catch (e) {
+                                    console.error('Gagal menyimpan pending order (optimistic):', e);
+                                }
+
+                                const paymentUrl = `receipt.html?wallet=&amount=${order.amount}&items=${encodeURIComponent(cart.map(item => item.name).join(', '))}&shipping=${encodeURIComponent(JSON.stringify(shippingAddress))}&orderId=${order.id}`;
+                                // Redirect immediately to receipt page for fast UX
+                                localStorage.removeItem('cart'); // clear cart locally
+                                window.location.href = paymentUrl;
+                                return; // stop execution
+                            }
+                        } catch (error) {
+                            console.error('Checkout error:', error);
+                                toast.show('Kesalahan saat memproses pesanan. Pesanan akan disimpan secara sementara dan mencoba sinkronisasi nanti.', 'error');
+                            // As a safe fallback, ensure order is saved locally
+                            try {
+                                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                                const shippingAddress = {};
+                                const pendingOrders = JSON.parse(localStorage.getItem('pendingOrders') || '[]');
+                                pendingOrders.push({ id: Date.now(), amount: total, items: cart, status: 'pending', createdAt: new Date().toISOString() });
+                                localStorage.setItem('pendingOrders', JSON.stringify(pendingOrders));
+                            } catch (e) {
+                                console.error('Gagal menyimpan pending order pada fallback:', e);
+                            }
+                        } finally {
+                            // Re-enable button and hide loading
+                            if (checkoutBtn) checkoutBtn.disabled = false;
+                            if (checkoutText) checkoutText.textContent = 'Lanjut ke Pembayaran';
+                            if (loadingSpinner) loadingSpinner.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,366 @@
+ <!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Struk Pembayaran</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    </head>
+<body>
+
+    <section id="header">
+        <a href="index.html"><img src="img/JGT (1).png" class="logo" alt="Logo"></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fas fa-cart-shopping"></i></a></li>
+                <li id="profile-container"><a href="login.html" id="login-link"></a></li>
+                <a href="#" id="close"><i class="fas fa-times"></i></a>
+            </ul>
+        </div>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <a href="javascript:history.back()" class="btn-back" title="Kembali">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h2>Struk Pembayaran</h2>
+        <p>Silakan lakukan pembayaran sesuai instruksi di bawah ini.</p>
+    </section>
+
+    <section id="receipt-details" class="section-p1">
+        <div id="payment-info" class="receipt-box">
+            <div class="receipt-header" role="region" aria-label="Order summary">
+                <div class="receipt-brand">
+                    <img src="img/JGT (1).png" alt="Brand" class="receipt-logo-small">
+                </div>
+                <div class="receipt-meta">
+                    <div class="meta-row"><strong>Nomor Pesanan:</strong> <span id="order-id">-</span></div>
+                    <div class="meta-row"><strong>Tanggal:</strong> <span id="order-date">-</span></div>
+                </div>
+            </div>
+
+            <div class="payment-instruction-box">
+                <div class="instruction-header">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>Instruksi Pembayaran</h3>
+                </div>
+                
+                <div class="payment-amount-card">
+                    <div class="amount-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <div class="amount-info">
+                        <span class="amount-label">Jumlah yang Harus Dibayar</span>
+                        <span class="amount-display" id="payment-amount">-</span>
+                    </div>
+                </div>
+
+                <div class="payment-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Metode Pembayaran:</span>
+                        <span class="detail-value" id="payment-method">-</span>
+                    </div>
+                    <div class="detail-row highlight-row">
+                        <span class="detail-label">Nomor Rekening/Tujuan:</span>
+                        <span class="detail-value account-number" id="payment-destination">-</span>
+                        <button class="btn-copy" id="btn-copy-account" title="Salin nomor rekening">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Atas Nama:</span>
+                        <span class="detail-value">Jgt Distro</span>
+                    </div>
+                </div>
+                <div class="payment-warning">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Silakan lakukan transfer ke nomor rekening di atas terlebih dahulu sebelum mengklik "Konfirmasi Pembayaran". Pesanan hanya akan diproses setelah pembayaran diterima.</p>
+                </div>
+            </div>
+
+            <div class="simple-receipt">
+                <h4 style="margin:0 0 12px 0; color:#055; border-bottom: 2px solid #e6ede8; padding-bottom: 8px;">Detail Pesanan</h4>
+                <p><strong>Barang yang dibeli:</strong></p>
+                <ul id="item-list"></ul>
+                <p style="margin-top:12px;"><strong>Alamat Pengiriman:</strong></p>
+                <p id="shipping-address" style="margin:0;"></p>
+            </div>
+
+            <div class="receipt-actions" role="toolbar" aria-label="Receipt actions">
+                <button id="btn-print" class="btn btn-outline" aria-label="Cetak struk">
+                    <i class="fas fa-print"></i> Cetak Struk
+                </button>
+                <a href="https://wa.me/6282197883767" target="_blank" id="btn-wa-confirm" class="btn btn-secondary btn-wa" aria-label="Hubungi via WhatsApp">
+                    <i class="fab fa-whatsapp"></i> Chat Toko
+                </a>
+                <button id="btn-confirm" class="btn btn-primary" aria-label="Konfirmasi pembayaran selesai">
+                    <i class="fas fa-check-circle"></i> Sudah Bayar / Konfirmasi
+                </button>
+            </div>
+
+            <!-- Inline non-blocking confirmation UI (hidden by default) -->
+            <div id="confirm-box" class="inline-confirm hidden" aria-hidden="true">
+                <div class="confirm-content">
+                    <div class="confirm-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h4>Verifikasi Pembayaran</h4>
+                    <p>Apakah Anda sudah melakukan transfer ke nomor rekening di atas?</p>
+                    <p style="font-size: 12px; color: #666; margin-top: 8px;">
+                        Pastikan jumlah transfer sesuai dengan total pembayaran di atas.
+                    </p>
+                </div>
+                <div class="confirm-actions">
+                    <button id="confirm-yes" class="btn btn-primary">
+                        <i class="fas fa-check"></i> Ya, sudah transfer
+                    </button>
+                    <button id="confirm-no" class="btn btn-outline">
+                        <i class="fas fa-times"></i> Batal
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // If script.js exposes trySyncPendingOrders, it will be used by the banner button.
+        // Ensure global script is loaded (script.js is included before this inline script in the page).
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderId = urlParams.get('orderId');
+
+        const paymentMethodElement = document.getElementById('payment-method');
+        const paymentAmountElement = document.getElementById('payment-amount');
+        const itemListElement = document.getElementById('item-list');
+        const shippingAddressElement = document.getElementById('shipping-address');
+
+        // Order meta: display order id and date
+        const orderIdElement = document.getElementById('order-id');
+        const orderDateElement = document.getElementById('order-date');
+
+        // Get token from localStorage or URL params
+        let token = localStorage.getItem('token') || urlParams.get('token');
+
+        if (orderId && token) {
+            try {
+                // Fetch receipt data from API
+                const response = await fetch(`/api/receipt/${orderId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const receiptData = await response.json();
+
+                    // Populate receipt with API data
+                    if (orderIdElement) orderIdElement.textContent = receiptData.orderNumber || orderId;
+                    if (orderDateElement) orderDateElement.textContent = new Date(receiptData.createdAt).toLocaleString('id-ID');
+
+                    // Set payment method display
+                    let methodText = "";
+                    if (receiptData.paymentMethod === 'bank_transfer') {
+                        methodText = "Transfer Bank BNI";
+                    } else {
+                        methodText = receiptData.paymentMethod || "Transfer Bank BNI";
+                    }
+                    paymentMethodElement.textContent = methodText;
+
+                    // Set payment amount
+                    paymentAmountElement.textContent = receiptData.amount ? "Rp. " + Number(receiptData.amount).toLocaleString('id-ID') : "-";
+
+                    // Set payment destination number based on payment method
+                    const paymentDestinationElement = document.getElementById('payment-destination');
+                    if (receiptData.paymentMethod === 'bank_transfer') {
+                        paymentDestinationElement.textContent = receiptData.bankAccount || '1867208949';
+                    } else {
+                        paymentDestinationElement.textContent = '082197883767';
+                    }
+
+                    // Set item list
+                    if (receiptData.items && receiptData.items.length > 0) {
+                        itemListElement.innerHTML = '';
+                        receiptData.items.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent = `${item.name} - Rp. ${Number(item.price).toLocaleString('id-ID')} x ${item.quantity}`;
+                            itemListElement.appendChild(li);
+                        });
+                    } else {
+                        itemListElement.textContent = "Tidak ada item";
+                    }
+
+                    // Set shipping address
+                    if (receiptData.shippingAddress) {
+                        const addr = receiptData.shippingAddress;
+                        shippingAddressElement.innerHTML = `
+                            Nama: ${addr.fullName || '-'}<br>
+                            Telp: ${addr.phone || '-'}<br>
+                            Alamat: ${addr.address || '-'}<br>
+                            RT/RW: ${addr.rt || '-'} / ${addr.rw || '-'}<br>
+                            Kode Pos: ${addr.postalCode || '-'}
+                        `;
+                    } else {
+                        shippingAddressElement.textContent = "Tidak ada data alamat pengiriman.";
+                    }
+                } else {
+                    console.error('Failed to fetch receipt data');
+                    // Fallback to URL params if API fails
+                    fallbackToUrlParams();
+                }
+            } catch (error) {
+                console.error('Error fetching receipt data:', error);
+                // Fallback to URL params if API fails
+                fallbackToUrlParams();
+            }
+        } else {
+            // Fallback to URL params if no orderId or token
+            fallbackToUrlParams();
+        }
+
+        function fallbackToUrlParams() {
+            const wallet = urlParams.get('wallet');
+            const amount = urlParams.get('amount');
+            const items = urlParams.get('items');
+            const shipping = urlParams.get('shipping');
+
+            if (orderIdElement) orderIdElement.textContent = orderId || (new Date().getTime());
+            if (orderDateElement) orderDateElement.textContent = new Date().toLocaleString('id-ID');
+
+            // Set payment method display
+            let methodText = "";
+            if (wallet) {
+                const walletNames = {
+                    'gopay': 'GoPay',
+                    'ovo': 'OVO',
+                    'dana': 'DANA',
+                    'shopeepay': 'ShopeePay'
+                };
+                methodText = "Dompet Digital - " + (walletNames[wallet] || wallet);
+            } else {
+                methodText = "Transfer Bank BNI";
+            }
+            paymentMethodElement.textContent = methodText;
+
+            // Set payment amount
+            paymentAmountElement.textContent = amount ? "Rp. " + Number(amount).toLocaleString('id-ID') : "-";
+
+            // Set payment destination number based on payment method
+            const paymentDestinationElement = document.getElementById('payment-destination');
+            if (wallet) {
+                paymentDestinationElement.textContent = '082197883767';
+            } else {
+                paymentDestinationElement.textContent = '1867208949';
+            }
+
+            // Set item list
+            if (items) {
+                const itemArray = items.split(',').map(i => i.trim());
+                itemListElement.innerHTML = '';
+                itemArray.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    itemListElement.appendChild(li);
+                });
+            } else {
+                itemListElement.textContent = "Tidak ada item";
+            }
+
+            // Set shipping address
+            if (shipping) {
+                try {
+                    const shippingObj = JSON.parse(decodeURIComponent(shipping));
+                    shippingAddressElement.innerHTML = `
+                        Nama: ${shippingObj.fullName || '-'}<br>
+                        Telp: ${shippingObj.phone || '-'}<br>
+                        Alamat: ${shippingObj.address || '-'}<br>
+                        RT/RW: ${shippingObj.rt || '-'} / ${shippingObj.rw || '-'}<br>
+                        Kode Pos: ${shippingObj.postalCode || '-'}
+                    `;
+                } catch (e) {
+                    shippingAddressElement.textContent = "Data alamat pengiriman tidak valid.";
+                }
+            } else {
+                shippingAddressElement.textContent = "Tidak ada data alamat pengiriman.";
+            }
+        }
+
+        // Replace blocking confirm() with a non-blocking inline confirmation box
+        const btnConfirm = document.getElementById('btn-confirm');
+        const confirmBox = document.getElementById('confirm-box');
+        const confirmYes = document.getElementById('confirm-yes');
+        const confirmNo = document.getElementById('confirm-no');
+
+        if (btnConfirm && confirmBox) {
+            btnConfirm.addEventListener('click', () => {
+                // show inline confirmation and scroll into view on small screens
+                confirmBox.classList.remove('hidden');
+                confirmBox.setAttribute('aria-hidden', 'false');
+                setTimeout(() => {
+                    try { confirmBox.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+                }, 60);
+            });
+        }
+
+        if (confirmNo) {
+            confirmNo.addEventListener('click', () => {
+                confirmBox.classList.add('hidden');
+                confirmBox.setAttribute('aria-hidden', 'true');
+            });
+        }
+
+        if (confirmYes) {
+            confirmYes.addEventListener('click', () => {
+                // Non-blocking acknowledgement
+                if (typeof toast !== 'undefined') toast.show('Terima kasih! Pembayaran dikonfirmasi.', 'success', 3000);
+                // Clear cart and try sync once (non-blocking)
+                try { localStorage.removeItem('cart'); } catch (e) { console.warn(e); }
+                if (window.trySyncPendingOrders) {
+                    // Attempt a background sync but don't wait for it
+                    window.trySyncPendingOrders();
+                }
+                // Hide confirm UI and redirect after a short delay so user sees the toast
+                confirmBox.classList.add('hidden');
+                confirmBox.setAttribute('aria-hidden', 'true');
+                setTimeout(() => { window.location.href = 'index.html'; }, 1100);
+            });
+        }
+
+        // Print button
+        const btnPrint = document.getElementById('btn-print');
+        if (btnPrint) {
+            btnPrint.addEventListener('click', () => {
+                window.print();
+            });
+        }
+
+        // Copy account number button
+        const btnCopy = document.getElementById('btn-copy-account');
+        if (btnCopy) {
+            btnCopy.addEventListener('click', () => {
+                const accountNum = document.getElementById('payment-destination').textContent;
+                if (accountNum && accountNum !== '-') {
+                    navigator.clipboard.writeText(accountNum).then(() => {
+                        if (typeof toast !== 'undefined') {
+                            toast.show('Nomor rekening disalin ke clipboard', 'success', 2000);
+                        }
+                    }).catch(err => {
+                        if (typeof toast !== 'undefined') {
+                            toast.show('Gagal menyalin nomor rekening', 'error');
+                        }
+                    });
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>

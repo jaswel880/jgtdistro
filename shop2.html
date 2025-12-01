@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>JGT</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <style>
+            #pagination a {
+                margin: 0 5px;
+                padding: 8px 12px;
+                text-decoration: none;
+                color: white;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                transition: background-color 0.3s, color 0.3s;
+                cursor: pointer;
+                font-weight: 800;
+            }
+            #pagination a.active {
+                background-color: #007bff;
+                color: white;
+                font-weight: 1000;
+                cursor: default;
+                border-color: #007bff;
+            }
+            #pagination a:hover:not(.active) {
+                background-color: #e2e6ea;
+                border-color: #aaa;
+            }
+            #pagination a i {
+                vertical-align: middle;
+            }
+        </style>
+        <section id="header">
+            <a href="#"><img src="img/JGT (1).png" class="logo" alt="" srcset=""></a>
+
+            <div>
+                <ul id="navbar">
+                    <li><a  href="index.html">Home</a></li>
+                    <li><a class="active" href="shop.html">Shop</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fas fa-cart-shopping"></i></a></li>
+                <li id="profile-container">
+                    <a href="login.html" id="login-link">Login</a>
+                </li>
+                <a href="#" id="close"><i class="fas fa-times">×</i></a>
+                </ul>
+            </div>
+            <div id="mobile">
+                <a href="cart.html" aria-label="Cart"><i class="fas fa-cart-shopping">🛒</i></a>
+                <i id="bar" class="fas fa-outdent" aria-hidden="true">☰</i>
+            </div>
+        </section>
+
+        <section id="page-header">
+            <h2>#StayHome</h2>
+            <p>Hemat Lebih Banyak Dengan Kupon & Diskon Hingga 70%!</p>
+        </section>
+
+        <!-- Shop search / controls -->
+        <section id="shop-controls" class="section-p1">
+            <div class="shop-search">
+                <input type="search" id="shop-search-input" placeholder="Cari produk, merek, atau harga..." aria-label="Cari produk di toko" />
+                <button id="shop-search-clear" class="search-btn" aria-label="Bersihkan pencarian"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="shop-no-results" style="display:none; margin-top:12px; color:#c33; font-weight:700;">Tidak ditemukan produk yang sesuai.</div>
+        </section>
+
+        <section id="product1" class="section-p1">
+            <div class="pro-container">
+                <div class="pro" onclick="window.location.href='tasbp.html'">
+                    <img src="img/Tas/evilfact.jpg" alt="">
+                    <div class="des">
+                        <span>EvilFact</span>
+                        <h5>BP Rizvi H25 Black Bag</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.325.000</h4>
+                    </div>
+                    <a href="tasbp.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='bajuevil.html'">
+                     <img src="img/shirt/hitamevil.jpg" alt="">
+                    <div class="des">
+                        <span>EvilFact</span>
+                        <h5>TS H25 T-Shirts</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.148.000</h4>
+                    </div>
+                    <a href="bajuevil.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='topi.html'">
+                    <img src="img/topi/hitam.jpg" alt="">
+                    <div class="des">
+                        <span>Accentambios</span>
+                        <h5>Accentambios Trucker Hat</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.150.000</h4>
+                    </div>
+                    <a href="topi.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='bilablack.html'">
+                    <img src="img/shirt/bila2.jpg" alt="">
+                    <div class="des">
+                        <span>Billaboong</span>
+                        <h5>Billaboong Black T-Shirt</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.90.000</h4>
+                    </div>
+                    <a href="bilablack.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='bilaputih.html'">
+                     <img src="img/shirt/bilaputih.jpg" alt="">
+                    <div class="des">
+                        <span>Billaboong</span>
+                        <h5>Billaboong White T-Shirts</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.90.000</h4>
+                    </div>
+                    <a href="bilaputih.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='hodiepolos.html'">
+                    <img src="img/jaket/birumuda.jpg" alt="">
+                    <div class="des">
+                        <span>DAP</span>
+                        <h5>Hoodie Pullover Polos</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.170.000</h4>
+                    </div>
+                    <a href="hodiepolos.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='hurleyputih.html'">
+                    <img src="img/shirt/hurleyputih.jpg" alt="">
+                    <div class="des">
+                        <span>Hurley</span>
+                        <h5>Hurley White T-Shirt</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.90.000</h4>
+                    </div>
+                    <a href="hurleyputih.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='quiksilver.html'">
+                    <img src="img/shirt/quickwhite.jpg" alt="">
+                    <div class="des">
+                        <span> Quiksilver</span>
+                        <h5>Quiksilver T-Shirts</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.100.000</h4>
+                    </div>
+                    <a href="quiksilver.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                 <div class="pro"onclick="window.location.href='celciusco.html'">
+                    <img src="img/shirt/celciusputih.jpg" alt="">
+                    <div class="des">
+                        <span>Celcius</span>
+                        <h5>Celcius.CO T-Shirts</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.130.000</h4>
+                    </div>
+                    <a href="celciusco.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='adidasbaju.html'">
+                    <img src="img/shirt/adidasputih.jpg" alt="">
+                    <div class="des">
+                        <span>Adidas</span>
+                        <h5>Adidas Adicolor Classics 3-Stripes T-Shirts</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.100.000</h4>
+                    </div>
+                    <a href="adidasbaju.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='celanasomeday.html'">
+                    <img src="img/celana/someday4.jpg" alt="">
+                    <div class="des">
+                        <span>Someday</span>
+                        <h5>Celana pendek Someday</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.185.000</h4>
+                    </div>
+                    <a href="celanasomeday.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='panjanglecaso.html'">
+                    <img src="img/celana/lecaso.jpg" alt="">
+                    <div class="des">
+                        <span>Lecaso</span>
+                        <h5>Celana Jeans Denim Detail Robekan</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.300.000</h4>
+                    </div>
+                    <a href="panjanglecaso.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='panjanglecaso2.html'">
+                    <img src="img/celana/lecaso4.jpg" alt="">
+                    <div class="des">
+                        <span>Lecaso</span>
+                        <h5>Celana Jeans Denim</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.300.000</h4>
+                    </div>
+                    <a href="panjanglecaso2.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro"onclick="window.location.href='airjordan.html'">
+                    <img src="img/sepatu/airjordan.jpg" alt="">
+                    <div class="des">
+                        <span>Nike</span>
+                        <h5>Nike Air Jordan 1 Low </h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.650.000</h4>
+                    </div>
+                    <a href="airjordan.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro"onclick="window.location.href='adidas.html'">
+                    <img src="img/sepatu/adidas.jpg" alt="">
+                    <div class="des">
+                        <span>Adidas</span>
+                        <h5> Adidas Campus 00s Youth of Paris </h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.800.000</h4>
+                    </div>
+                    <a href="adidas.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro" onclick="window.location.href='molucas.html'">
+                    <img src="https://down-id.img.susercontent.com/file/84c598499ad781405f03019106089e9f" alt="">
+                    <div class="des">
+                        <span>Moluccas</span>
+                        <h5>Moluccas T-Shirt</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.250.000</h4>
+                    </div>
+                    <a href="molucas.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro"onclick="window.location.href='new.html'">
+                    <img src="img/sepatu/new.jpg" alt="">
+                    <div class="des">
+                        <span>New Balance</span>
+                        <h5> New Balance 574 Legacy x Stone Island</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.800.000</h4>
+                    </div>
+                    <a href="new.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro"onclick="window.location.href='nikeairgold.html'">
+                    <img src="img/sepatu/nikeair.jpg" alt="">
+                    <div class="des">
+                        <span>Nike</span>
+                        <h5> Nike Air Force 1 Low Off-White University</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.550.000</h4>
+                    </div>
+                    <a href="nikeairgold.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                <div class="pro"onclick="window.location.href='vans.html'">
+                    <img src="img/sepatu/vans.jpg" alt="">
+                    <div class="des">
+                        <span>Vans</span>
+                        <h5> Vans Knu Skool</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.550.000</h4>
+                    </div>
+                    <a href="vans.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+                 <div class="pro"onclick="window.location.href='puma.html'">
+                    <img src="img/sepatu/puma2.jpg" alt="">
+                    <div class="des">
+                        <span>Puma</span>
+                        <h5>Puma Palermo</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>Rp.650.000</h4>
+                    </div>
+                    <a href="puma.html"><i class="fas fa-cart-shopping cart"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="pagination" class="section-p1">
+            <a href="shop.html">1</a>
+            <a class="active" href="shop2.html">2</a>
+            <a href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
+        </section>
+
+        <section id="newsletter" class="section-p1 section-m1">
+            <div id="newstext">
+                <h4>Sign Up For Newsletter</h4>
+                <p>Dapatkan Pembaruan Email Tentang Toko terbaru Kami Dan Penawaran Khusus.</p>
+            </div>
+            <div class="form">
+                <input type="text" placeholder="Alamat Email Anda">
+                <button class="normal">Daftar</button>
+            </div>
+        </section>
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="img/JGT (1).png" alt="">
+                <h4>Kontak</h4>
+                <p><strong>Alamat:</strong> Jln.Perumtel,Gunung Nona</p>
+                <p><strong>Nomor:</strong> +62-821-9788-3767</p>
+                <p><strong>Buka:</strong>10:00 - 17.00, mon-frid </p>
+                <div class="Follow">
+                    <h4>Ikuti Kami</h4>
+                    <div class="icon">
+                      <a href="https://www.facebook.com/jaswel.picanussa.7?rdid=FD7Yz9G7WK2sbKt5#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/jaswel21_/?next=%2F" target="_blank"><i class="fab fa-instagram"></i></a>
+                         <a href="https://www.youtube.com/@iaknambonofficial2583" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <h4>Tentang</h4>
+                <a href="about.html" target="_blank">Tentang Kami</a>
+                <a href="#" target="_blank">Informasi Pengiriman</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Syarat Dan Ketentuan</a>
+                <a href="contact.html" target="_blank">Kontak Kami</a>
+            </div>
+            <div class="col">
+                <h4>Akun Saya</h4>
+                <a href="#">Daftar</a>
+                <a href="cart.html" target="_blank">Lihat Keranjang</a>
+                <a href="#">Daftar Keinginan</a>
+                <a href="#">Lacak Pesanan</a>
+                <a href="#">Help</a>
+            </div>
+
+            <div class="col install">
+                <h4>Install app</h4>
+                <p>App Store atau Google Play</p>
+                <div class="row">
+                    <img src="img/pay/app.jpg" alt="">
+                    <img src="img/pay/play.jpg" alt="">
+                </div>
+                 <p>Gerbang Pembayaran yang Aman</p>
+                 <img src="img/pay/pay.png" alt="">
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 - All Rights Reserved by jgt.com</p>
+            </div>
+        </footer>
+
+        <script src="script.js"></script>
+    </body>
+
+</html>

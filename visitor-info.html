@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Information</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .info-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            max-width: 700px;
+            width: 90%;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 300;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .info-table td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        .info-table tr:hover td {
+            background-color: rgba(102, 126, 234, 0.1);
+        }
+        .info-table tr:last-child td {
+            border-bottom: none;
+        }
+        .info-table strong {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1em;
+        }
+        .info-table span {
+            color: #555;
+            font-size: 1em;
+            word-break: break-all;
+        }
+        .loading {
+            color: #888;
+            font-style: italic;
+        }
+        @media (max-width: 768px) {
+            .info-container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="info-container">
+        <h1>Informasi Pengunjung</h1>
+        <table class="info-table">
+            <tbody>
+                <tr>
+                    <td><strong>Device Name:</strong></td>
+                    <td><span id="device-name" class="loading">Loading...</span></td>
+                </tr>
+                <tr>
+                    <td><strong>User Name:</strong></td>
+                    <td><span id="user-name" class="loading">Not available</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Country:</strong></td>
+                    <td><span id="country" class="loading">Loading...</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Get device name from user agent
+        document.getElementById('device-name').textContent = navigator.userAgent;
+
+        // Try to get user name from localStorage (if logged in)
+        const userName = localStorage.getItem('userName') || 'Not logged in';
+        document.getElementById('user-name').textContent = userName;
+
+        // Get country from IP
+        fetch('https://ipapi.co/json/')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('country').textContent = data.country_name || 'Unknown';
+            })
+            .catch(error => {
+                console.error('Error fetching country:', error);
+                document.getElementById('country').textContent = 'Error loading';
+            });
+    </script>
+</body>
+</html>

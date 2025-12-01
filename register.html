@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Akun - JGT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="header">
+        <a href="index.html"><img src="img/JGT (1).png" class="logo" alt="" srcset=""></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fas fa-cart-shopping"></i></a></li>
+                <li><a class="active" href="login.html">Login</a></li>
+                <a href="#" id="close"><i class="fas fa-times">×</i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html" aria-label="Cart"><i class="fas fa-cart-shopping">🛒</i></a>
+            <i id="bar" class="fas fa-outdent" aria-hidden="true">☰</i>
+        </div>
+    </section>
+
+    <section id="register" class="section-p1">
+        <div class="register-container">
+            <div class="icon-container">
+                <div class="icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h2>Daftar Akun Baru</h2>
+                <p>Buat akun untuk mulai berbelanja di JGT dan nikmati pengalaman belanja yang luar biasa</p>
+            </div>
+            <form id="registerForm" action="#" method="post">
+                <div class="form-group">
+                    <label for="fullName">Nama Lengkap:</label>
+                    <div class="input-container">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Masukkan nama lengkap Anda">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Alamat Email:</label>
+                    <div class="input-container">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" name="email" required placeholder="Masukkan alamat email Anda">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Nomor Telepon:</label>
+                    <div class="input-container">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="phone" name="phone" required placeholder="Masukkan nomor telepon Anda">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <div class="input-container">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required minlength="6" placeholder="Minimal 6 karakter">
+                    </div>
+                    <div id="passwordStrength"></div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Konfirmasi Password:</label>
+                    <div class="input-container">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6" placeholder="Konfirmasi password Anda">
+                    </div>
+                    <div id="matchIndicator" class="match-indicator"></div>
+                </div>
+                <div class="checkbox">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">Saya setuju dengan <a href="#" target="_blank">Syarat & Ketentuan</a> dan <a href="#" target="_blank">Kebijakan Privasi</a></label>
+                </div>
+
+                <button type="submit" class="btn">Daftar Akun</button>
+            </form>
+            <div class="register-links">
+                <p>Sudah punya akun? <a href="login.html">Login di sini</a></p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        function showError(field, message) {
+            let errorElement = field.parentElement.querySelector('.error-message');
+            if (!errorElement) {
+                errorElement = document.createElement('div');
+                errorElement.className = 'error-message';
+                errorElement.style.cssText = 'color: #e74c3c; font-size: 12px; margin-top: 5px;';
+                field.parentElement.appendChild(errorElement);
+            }
+            errorElement.textContent = message;
+        }
+
+        function hideError(field) {
+            const errorElement = field.parentElement.querySelector('.error-message');
+            if (errorElement) {
+                errorElement.remove();
+            }
+        }
+
+        function validateField(field) {
+            const value = field.value.trim();
+            let isValid = true;
+            let errorMessage = '';
+
+            switch (field.id) {
+                case 'fullName':
+                    if (value.length < 2) {
+                        isValid = false;
+                        errorMessage = 'Nama lengkap minimal 2 karakter';
+                    }
+                    break;
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Format email tidak valid';
+                    }
+                    break;
+                case 'phone':
+                    const phoneRegex = /^[0-9]{10,13}$/;
+                    if (!phoneRegex.test(value.replace(/\D/g/ ''))) {
+                        isValid = false;
+                        errorMessage = 'Nomor telepon 10-13 digit';
+                    }
+                    break;
+                case 'password':
+                    if (value.length < 6) {
+                        isValid = false;
+                        errorMessage = 'Password minimal 6 karakter';
+                    }
+                    break;
+                case 'confirmPassword':
+                    const password = document.getElementById('password').value;
+                    if (value !== password) {
+                        isValid = false;
+                        errorMessage = 'Password tidak cocok';
+                    }
+                    break;
+
+            }
+
+            if (!isValid) {
+                field.style.borderColor = '#e74c3c';
+                field.classList.add('error');
+                showError(field, errorMessage);
+            } else {
+                field.style.borderColor = '#27ae60';
+                field.classList.remove('error');
+                hideError(field);
+            }
+
+            return isValid;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            handleLoginLogout();
+
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirmPassword');
+            const passwordStrength = document.getElementById('passwordStrength');
+            const matchIndicator = document.getElementById('matchIndicator');
+
+            // Password match indicator
+            confirmPasswordInput.addEventListener('input', function() {
+                const password = passwordInput.value;
+                const confirmPassword = this.value;
+
+                if (confirmPassword.length > 0) {
+                    matchIndicator.style.display = 'block';
+                    if (password === confirmPassword) {
+                        matchIndicator.textContent = '✓ Password cocok';
+                        matchIndicator.style.color = '#27ae60';
+                    } else {
+                        matchIndicator.textContent = '✗ Password tidak cocok';
+                        matchIndicator.style.color = '#e74c3c';
+                    }
+                } else {
+                    matchIndicator.style.display = 'none';
+                }
+            });
+
+            // Password strength indicator
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                let feedback = [];
+
+                if (password.length >= 6) strength++;
+                if (password.match(/[a-z]/)) strength++;
+                if (password.match(/[A-Z]/)) strength++;
+                if (password.match(/[0-9]/)) strength++;
+                if (password.match(/[^A-Za-z0-9]/)) strength++;
+
+                if (password.length > 0) {
+                    passwordStrength.style.display = 'block';
+                    if (strength <= 2) {
+                        passwordStrength.textContent = 'Kekuatan password: Lemah';
+                        passwordStrength.style.color = '#e74c3c';
+                    } else if (strength <= 4) {
+                        passwordStrength.textContent = 'Kekuatan password: Sedang';
+                        passwordStrength.style.color = '#f39c12';
+                    } else {
+                        passwordStrength.textContent = 'Kekuatan password: Kuat';
+                        passwordStrength.style.color = '#27ae60';
+                    }
+                } else {
+                    passwordStrength.style.display = 'none';
+                }
+            });
+
+            // Real-time validation
+            const inputs = document.querySelectorAll('input[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('error')) {
+                        validateField(this);
+                    }
+                });
+
+                input.addEventListener('focus', function() {
+                    this.parentElement.parentElement.style.transform = 'translateY(-2px)';
+                    this.style.borderColor = '#667eea';
+                    this.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.parentElement.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                    if (!this.classList.contains('error')) {
+                        this.style.borderColor = '#e1e5e9';
+                    }
+                });
+            });
+
+            // Add hover effects to button
+            const submitBtn = document.querySelector('.btn');
+            submitBtn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.6)';
+            });
+            submitBtn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
+            });
+
+            // Add hover effects to links
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('mouseenter', function() {
+                    this.style.color = '#764ba2';
+                });
+                link.addEventListener('mouseleave', function() {
+                    this.style.color = '#667eea';
+                });
+            });
+
+            // Form submit handler
+            document.getElementById('registerForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const fullName = document.getElementById('fullName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const terms = document.getElementById('terms').checked;
+
+                // Validate all fields
+                const inputs = document.querySelectorAll('input[required]');
+                let allValid = true;
+                inputs.forEach(input => {
+                    if (!validateField(input)) {
+                        allValid = false;
+                    }
+                });
+
+                // Additional validations
+                if (password !== confirmPassword) {
+                    alert('Password tidak cocok. Silakan coba lagi.');
+                    return;
+                }
+
+                if (!terms) {
+                    alert('Anda harus menyetujui syarat dan ketentuan.');
+                    return;
+                }
+
+                if (!allValid) {
+                    alert('Silakan perbaiki kesalahan pada form sebelum melanjutkan.');
+                    return;
+                }
+
+                // Show loading state
+                const submitBtn = document.querySelector('.btn');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Mendaftarkan...';
+                submitBtn.disabled = true;
+
+                try {
+                    const response = await fetch('/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            fullName,
+                            email,
+                            phone,
+                            password
+                        })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        // Success animation
+                        submitBtn.textContent = '✓ Berhasil!';
+                        submitBtn.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+                        setTimeout(() => {
+                            alert('Akun berhasil dibuat! Silakan login dengan akun baru Anda.');
+                            window.location.href = 'login.html?registered=true&email=' + encodeURIComponent(email);
+                        }, 1000);
+                    } else {
+                        alert('Error: ' + data.error);
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }
+                } catch (error) {
+                    alert('Network error: ' + error.message);
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

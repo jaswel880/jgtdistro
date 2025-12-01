@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi Kode - JGT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="header">
+        <a href="index.html"><img src="img/JGT (1).png" class="logo" alt="" srcset=""></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="lg-bag"><a href="cart.html"><i class="fas fa-cart-shopping"></i></a></li>
+                <li><a class="active" href="login.html">Login</a></li>
+                <a href="#" id="close"><i class="fas fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <a href="cart.html"><i class="fas fa-cart-shopping"></i></a>
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <section id="verify-code" class="section-p1">
+        <div class="verify-container">
+            <div class="icon-container">
+                <div class="icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h2>Verifikasi Kode</h2>
+                <p>Masukkan kode verifikasi 4 digit yang telah dikirim ke email Anda.</p>
+                <p class="countdown-text">Kode akan kedaluwarsa dalam <span id="countdown">05:00</span></p>
+            </div>
+            <form id="verifyForm" action="#" method="post">
+                <div class="form-group">
+                    <label for="code">Kode Verifikasi:</label>
+                    <div class="input-container">
+                        <i class="fas fa-shield-alt"></i>
+                        <input type="text" id="code" name="code" required maxlength="4" placeholder="Masukkan 4 digit kode verifikasi" style="text-align: center; font-size: 18px; letter-spacing: 2px;">
+                    </div>
+                </div>
+                <button type="submit" class="btn">Verifikasi Kode</button>
+            </form>
+            <div class="verify-links">
+                <a href="forgot-password.html" id="resend-link">Kirim Ulang Kode</a>
+                <span>|</span>
+                <a href="login.html">Kembali ke Login</a>
+            </div>
+            <div class="help-section">
+                <p>Tidak menerima kode?</p>
+                <p class="help-text">Periksa folder spam atau junk email Anda</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeInput = document.getElementById('code');
+            const countdownElement = document.getElementById('countdown');
+            const resendLink = document.getElementById('resend-link');
+            let countdownTime = 300; // 5 minutes in seconds
+
+            // Allow only numeric input
+            codeInput.addEventListener('keydown', function(e) {
+                // Allow only numeric keys, backspace, delete, tab, enter, arrow keys
+                if (!/[0-9]/.test(e.key) && !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+                    e.preventDefault();
+                }
+            });
+
+            codeInput.addEventListener('input', function() {
+                // Limit to 4 digits
+                if (this.value.length > 4) {
+                    this.value = this.value.slice(0, 4);
+                }
+
+                // Add filled styling
+                if (this.value.length > 0) {
+                    this.style.borderColor = '#667eea';
+                    this.style.backgroundColor = '#f8f9ff';
+                } else {
+                    this.style.borderColor = '#e1e5e9';
+                    this.style.backgroundColor = 'white';
+                }
+            });
+
+            codeInput.addEventListener('focus', function() {
+                this.style.borderColor = '#667eea';
+                this.style.boxShadow = '0 0 0 3px rgba(102, 126, 234, 0.1)';
+            });
+
+            codeInput.addEventListener('blur', function() {
+                this.style.boxShadow = 'none';
+                if (this.value.length === 0) {
+                    this.style.borderColor = '#e1e5e9';
+                }
+            });
+
+            // Countdown timer
+            function updateCountdown() {
+                const minutes = Math.floor(countdownTime / 60);
+                const seconds = countdownTime % 60;
+                countdownElement.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+                if (countdownTime > 0) {
+                    countdownTime--;
+                    setTimeout(updateCountdown, 1000);
+                } else {
+                    countdownElement.textContent = '00:00';
+                    resendLink.style.color = '#667eea';
+                    resendLink.style.cursor = 'pointer';
+                    resendLink.textContent = 'Kirim Ulang Kode';
+                }
+            }
+
+            updateCountdown();
+
+            // Resend link functionality
+            resendLink.addEventListener('click', function(e) {
+                if (countdownTime > 0) {
+                    e.preventDefault();
+                    return;
+                }
+
+                // Reset countdown
+                countdownTime = 300;
+                updateCountdown();
+                resendLink.style.color = '#999';
+                resendLink.style.cursor = 'default';
+                resendLink.textContent = 'Kirim Ulang Kode';
+
+                // Show success message
+                toast.show('Kode verifikasi baru telah dikirim ke email Anda.', 'success');
+            });
+
+            // Add hover effects to button
+            const submitBtn = document.querySelector('.btn');
+            submitBtn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 6px 20px rgba(102, 126, 234, 0.6)';
+            });
+            submitBtn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 15px rgba(102, 126, 234, 0.4)';
+            });
+
+            // Add hover effects to links
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                if (link.id !== 'resend-link') {
+                    link.addEventListener('mouseenter', function() {
+                        this.style.color = '#764ba2';
+                    });
+                    link.addEventListener('mouseleave', function() {
+                        this.style.color = '#667eea';
+                    });
+                }
+            });
+        });
+
+        document.getElementById('verifyForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const code = document.getElementById('code').value;
+
+            if (code.length !== 4) {
+                toast.show('Silakan masukkan kode verifikasi 4 digit lengkap.', 'warning');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = document.querySelector('.btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Memverifikasi...';
+            submitBtn.disabled = true;
+
+            // Simulasi validasi kode (dalam kasus nyata, ini akan dicek dengan backend)
+            setTimeout(() => {
+                    if (code === '1234') { // Kode dummy untuk testing
+                    toast.show('Kode verifikasi berhasil! Mengarahkan ke halaman reset password...', 'success');
+                    window.location.href = 'reset-password.html';
+                } else {
+                    toast.show('Kode verifikasi salah. Silakan coba lagi.', 'error');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+
+                    // Clear input and refocus
+                    document.getElementById('code').value = '';
+                    document.getElementById('code').style.borderColor = '#e1e5e9';
+                    document.getElementById('code').style.backgroundColor = 'white';
+                    document.getElementById('code').focus();
+                }
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
+

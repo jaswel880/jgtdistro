@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konfirmasi Pengiriman</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <section id="header">
+        <a href="#"><img src="img/JGT (1).png" class="logo" alt="Logo" /></a>
+        <ul id="navbar">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="cart.html">Cart</a></li>
+        </ul>
+    </section>
+
+    <section id="page-header" class="about-header">
+        <h2>Konfirmasi Pengiriman</h2>
+        <p>Pesanan Anda sudah dibayar tunai dan sedang diproses untuk pengiriman.</p>
+    </section>
+
+    <section id="shipping-details" class="section-p1">
+        <div id="shipping-info" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+            <h3>Detail Pengiriman:</h3>
+            <p id="shipping-address"></p>
+            <p style="margin-top: 20px; font-weight: bold;">
+                Terima kasih telah memilih pembayaran tunai. Silakan siapkan pembayaran saat barang tiba.
+            </p>
+
+            <button id="btn-back-home" class="normal" style="margin-top: 20px;">Kembali ke Beranda</button>
+        </div>
+    </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const shipping = urlParams.get('shipping');
+        const shippingAddressElement = document.getElementById('shipping-address');
+
+        if (shipping) {
+            try {
+                const shippingObj = JSON.parse(decodeURIComponent(shipping));
+                shippingAddressElement.innerHTML = `
+                    Nama: ${shippingObj.fullName || '-'}<br>
+                    Telp: ${shippingObj.phone || '-'}<br>
+                    Alamat: ${shippingObj.address || '-'}<br>
+                    RT/RW: ${shippingObj.rt || '-'} / ${shippingObj.rw || '-'}<br>
+                    Kode Pos: ${shippingObj.postalCode || '-'}
+                `;
+            } catch (e) {
+                shippingAddressElement.textContent = "Data alamat pengiriman tidak valid.";
+            }
+        } else {
+            shippingAddressElement.textContent = "Tidak ada data alamat pengiriman.";
+        }
+
+        const btnBackHome = document.getElementById('btn-back-home');
+        btnBackHome.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    });
+</script>
+</body>
+</html>
